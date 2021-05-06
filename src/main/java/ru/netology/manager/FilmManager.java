@@ -2,30 +2,42 @@ package ru.netology.manager;
 
 import lombok.NoArgsConstructor;
 import ru.netology.domain.PosterFilms;
+import ru.netology.repository.FilmRepository;
 
 @NoArgsConstructor
 public class FilmManager {
-  private PosterFilms[] films = new PosterFilms[0];
+  private FilmRepository repository;
 
-  public void add(PosterFilms item) {
-    int length = films.length + 1;
-    PosterFilms[] tmp = new PosterFilms[length];
-    System.arraycopy(films, 0, tmp, 0, films.length);
-    int lastIndex = tmp.length - 1;
-    tmp[lastIndex] = item;
-    films = tmp;
+  public FilmManager(FilmRepository repository) {
+    this.repository = repository;
   }
 
-  public PosterFilms[] getAddedFilms() {
+  public void add(PosterFilms films){
+    repository.save(films);
+  }
+
+  public PosterFilms[] getAll(){
     int maxShowFilms = 10;
+    PosterFilms[] films = repository.findAll();
     PosterFilms[] result = new PosterFilms[films.length];
+
     if (films.length > maxShowFilms) {
       result = new PosterFilms[maxShowFilms];
     }
+
     for (int i = 0; i < result.length; i++) {
-      int index = films.length - i - 1;
+      int index = films.length -i - 1;
       result[i] = films[index];
     }
+
     return result;
+  }
+
+  public void removeById(int id){
+    repository.removeById(id);
+  }
+
+  public void removeAll(){
+    repository.removeAll();
   }
 }
