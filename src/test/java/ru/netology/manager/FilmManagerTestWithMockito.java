@@ -13,7 +13,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-
 class FilmManagerTestWithMockito {
     @Mock
     FilmRepository repository;
@@ -33,7 +32,7 @@ class FilmManagerTestWithMockito {
     private final FilmPoster eleventh = new FilmPoster(11, "Url 11", "Фильм без названия", "Пустой жанр");
 
     @Test
-    public void shouldFindAll(){
+    public void shouldFindAll() {
         FilmPoster[] returned = new FilmPoster[]{first, second, tenth};
         doReturn(returned).when(repository).findAll();
 
@@ -45,7 +44,7 @@ class FilmManagerTestWithMockito {
     }
 
     @Test
-    public void shouldRemoveAll(){
+    public void shouldRemoveAll() {
         FilmPoster[] returned = new FilmPoster[0];
         doReturn(returned).when(repository).removeAll();
 

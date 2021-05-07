@@ -41,7 +41,7 @@ class FilmManagerTest {
     }
 
     @Test
-    public void shouldRemoveById(){
+    public void shouldRemoveById() {
         manager.add(fifth);
         manager.add(fourth);
         manager.add(ninth);
