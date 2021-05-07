@@ -1,28 +1,28 @@
 package ru.netology.repository;
 
-import ru.netology.domain.PosterFilms;
+import ru.netology.domain.FilmPoster;
 
 public class FilmRepository {
-    private PosterFilms[] films = new PosterFilms[0];
+    private FilmPoster[] films = new FilmPoster[0];
 
-    public void save(PosterFilms film) {
+    public void save(FilmPoster film) {
         int length = films.length + 1;
-        PosterFilms[] tmp = new PosterFilms[length];
+        FilmPoster[] tmp = new FilmPoster[length];
         System.arraycopy(films, 0, tmp, 0, films.length);
         int lastIndex = tmp.length - 1;
         tmp[lastIndex] = film;
         films = tmp;
     }
 
-    public PosterFilms[] findAll() {
+    public FilmPoster[] findAll() {
         return films;
     }
 
     public void removeById(int id) {
         int length = films.length - 1;
-        PosterFilms[] tmp = new PosterFilms[length];
+        FilmPoster[] tmp = new FilmPoster[length];
         int index = 0;
-        for (PosterFilms film : films) {
+        for (FilmPoster film : films) {
             if (film.getId() != id) {
                 tmp[index] = film;
                 index++;
@@ -31,7 +31,7 @@ public class FilmRepository {
         films = tmp;
     }
 
-    public PosterFilms[] removeAll() {
+    public FilmPoster[] removeAll() {
         return films;
     }
 }
