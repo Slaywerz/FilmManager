@@ -6,6 +6,9 @@ import ru.netology.domain.FilmPoster;
 @NoArgsConstructor
 public class FilmManager {
   private FilmPoster[] films = new FilmPoster[0];
+  int maxShowFilm = 10;
+
+
 
   public void add(FilmPoster film) {
     int length = films.length + 1;
@@ -17,10 +20,9 @@ public class FilmManager {
   }
 
   public FilmPoster[] getAddedFilms() {
-    int maxShowFilms = 10;
     FilmPoster[] result = new FilmPoster[films.length];
-    if (films.length > maxShowFilms) {
-      result = new FilmPoster[maxShowFilms];
+    if (films.length > maxShowFilm) {
+      result = new FilmPoster[maxShowFilm];
     }
     for (int i = 0; i < result.length; i++) {
       int index = films.length - i - 1;
