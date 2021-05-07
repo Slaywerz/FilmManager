@@ -1,26 +1,26 @@
 package ru.netology.manager;
 
 import lombok.NoArgsConstructor;
-import ru.netology.domain.PosterFilms;
+import ru.netology.domain.FilmPoster;
 
 @NoArgsConstructor
 public class FilmManager {
-  private PosterFilms[] films = new PosterFilms[0];
+  private FilmPoster[] films = new FilmPoster[0];
 
-  public void add(PosterFilms item) {
+  public void add(FilmPoster film) {
     int length = films.length + 1;
-    PosterFilms[] tmp = new PosterFilms[length];
+    FilmPoster[] tmp = new FilmPoster[length];
     System.arraycopy(films, 0, tmp, 0, films.length);
     int lastIndex = tmp.length - 1;
-    tmp[lastIndex] = item;
+    tmp[lastIndex] = film;
     films = tmp;
   }
 
-  public PosterFilms[] getAddedFilms() {
+  public FilmPoster[] getAddedFilms() {
     int maxShowFilms = 10;
-    PosterFilms[] result = new PosterFilms[films.length];
+    FilmPoster[] result = new FilmPoster[films.length];
     if (films.length > maxShowFilms) {
-      result = new PosterFilms[maxShowFilms];
+      result = new FilmPoster[maxShowFilms];
     }
     for (int i = 0; i < result.length; i++) {
       int index = films.length - i - 1;
