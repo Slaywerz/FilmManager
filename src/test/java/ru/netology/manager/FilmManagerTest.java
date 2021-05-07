@@ -48,4 +48,15 @@ class FilmManagerTest {
         FilmPoster[] expected = new FilmPoster[]{fifth, fourth, third, second, first};
         assertArrayEquals(actual, expected);
     }
+
+    @Test
+    public void shouldChangeMaxShowFilm(){
+        manager.maxShowFilm = 1;
+        manager.add(first);
+        manager.add(second);
+
+        FilmPoster[] actual = manager.getAddedFilms();
+        FilmPoster[] expected = new FilmPoster[]{second};
+        assertArrayEquals(actual, expected);
+    }
 }
