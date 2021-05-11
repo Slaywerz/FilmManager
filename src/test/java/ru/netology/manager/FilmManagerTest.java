@@ -50,13 +50,14 @@ class FilmManagerTest {
     }
 
     @Test
-    public void shouldChangeMaxShowFilm(){
-        manager.maxShowFilm = 1;
-        manager.add(first);
-        manager.add(second);
+    public void shouldChangeShowLimit() {
+        FilmManager filmManager = new FilmManager(2);
+        filmManager.add(second);
+        filmManager.add(third);
+        filmManager.add(eighth);
 
-        FilmPoster[] actual = manager.getAddedFilms();
-        FilmPoster[] expected = new FilmPoster[]{second};
+        FilmPoster[] actual = filmManager.getAddedFilms();
+        FilmPoster[] expected = new FilmPoster[]{eighth, third};
         assertArrayEquals(actual, expected);
     }
 }

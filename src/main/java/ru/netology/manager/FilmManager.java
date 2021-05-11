@@ -6,8 +6,11 @@ import ru.netology.domain.FilmPoster;
 @NoArgsConstructor
 public class FilmManager {
     private FilmPoster[] films = new FilmPoster[0];
-    int maxShowFilm = 10;
+    private int maxShowFilm = 10;
 
+    public FilmManager(int maxShowFilm) {
+        this.maxShowFilm = maxShowFilm;
+    }
 
     public void add(FilmPoster film) {
         int length = films.length + 1;
