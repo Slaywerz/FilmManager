@@ -51,4 +51,17 @@ class FilmManagerTest {
         FilmPoster[] expected = new FilmPoster[]{ninth, fourth, fifth};
         assertArrayEquals(actual, expected);
     }
+
+    @Test
+    public void shouldChangeShowLimit(){
+        FilmManager filmManager = new FilmManager(new FilmRepository(), 2);
+        filmManager.add(first);
+        filmManager.add(second);
+        filmManager.add(ninth);
+
+        FilmPoster[] actual = filmManager.getAll();
+        FilmPoster[] expected = new FilmPoster[]{ninth, second};
+        assertArrayEquals(actual, expected);
+
+    }
 }

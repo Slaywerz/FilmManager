@@ -7,6 +7,12 @@ import ru.netology.repository.FilmRepository;
 @NoArgsConstructor
 public class FilmManager {
     private FilmRepository repository;
+    private int maxShowFilms = 10;
+
+    public FilmManager(FilmRepository repository, int maxShowFilms) {
+        this.repository = repository;
+        this.maxShowFilms = maxShowFilms;
+    }
 
     public FilmManager(FilmRepository repository) {
         this.repository = repository;
@@ -17,7 +23,6 @@ public class FilmManager {
     }
 
     public FilmPoster[] getAll() {
-        int maxShowFilms = 10;
         FilmPoster[] films = repository.findAll();
         FilmPoster[] result;
 
