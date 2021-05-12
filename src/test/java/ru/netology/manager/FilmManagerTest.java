@@ -54,7 +54,8 @@ class FilmManagerTest {
 
     @Test
     public void shouldChangeShowLimit(){
-        FilmManager filmManager = new FilmManager(new FilmRepository(), 2);
+        FilmManager filmManager = new FilmManager(filmRepository, 2);
+
         filmManager.add(first);
         filmManager.add(second);
         filmManager.add(ninth);

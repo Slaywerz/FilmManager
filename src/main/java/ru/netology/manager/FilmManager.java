@@ -1,18 +1,15 @@
 package ru.netology.manager;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.FilmPoster;
 import ru.netology.repository.FilmRepository;
 
 @NoArgsConstructor
+@AllArgsConstructor
 public class FilmManager {
     private FilmRepository repository;
     private int maxShowFilms = 10;
-
-    public FilmManager(FilmRepository repository, int maxShowFilms) {
-        this.repository = repository;
-        this.maxShowFilms = maxShowFilms;
-    }
 
     public FilmManager(FilmRepository repository) {
         this.repository = repository;
