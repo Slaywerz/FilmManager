@@ -6,7 +6,7 @@ import ru.netology.domain.FilmPoster;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class FilmManagerTest {
-    private FilmManager manager = new FilmManager();
+    private FilmManager manager = new FilmManager(new FilmPoster[0]);
     private final FilmPoster first = new FilmPoster(1, "Url 1", "Onward", "Cartoon");
     private final FilmPoster second = new FilmPoster(2, "Url 2", "John Wick 3", "Action");
     private final FilmPoster third = new FilmPoster(3, "Url 3", "Friends", "Serial");
@@ -51,7 +51,7 @@ class FilmManagerTest {
 
     @Test
     public void shouldChangeShowLimit() {
-        FilmManager filmManager = new FilmManager(2);
+        FilmManager filmManager = new FilmManager(new FilmPoster[0], 2);
         filmManager.add(second);
         filmManager.add(third);
         filmManager.add(eighth);

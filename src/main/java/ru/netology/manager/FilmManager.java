@@ -1,15 +1,15 @@
 package ru.netology.manager;
 
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import ru.netology.domain.FilmPoster;
 
-@NoArgsConstructor
+@AllArgsConstructor
 public class FilmManager {
-    private FilmPoster[] films = new FilmPoster[0];
+    private FilmPoster[] films;
     private int maxShowFilm = 10;
 
-    public FilmManager(int maxShowFilm) {
-        this.maxShowFilm = maxShowFilm;
+    public FilmManager(FilmPoster[] films) {
+        this.films = films;
     }
 
     public void add(FilmPoster film) {
