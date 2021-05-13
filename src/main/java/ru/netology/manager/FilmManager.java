@@ -1,11 +1,9 @@
 package ru.netology.manager;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import ru.netology.domain.FilmPoster;
 import ru.netology.repository.FilmRepository;
 
-@NoArgsConstructor
 @AllArgsConstructor
 public class FilmManager {
     private FilmRepository repository;
