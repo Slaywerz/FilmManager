@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class PosterFilms {
+public class FilmPoster {
   private int id;
   private String imageUrl;
   private String filmName;
