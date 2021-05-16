@@ -1,14 +1,23 @@
 package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.FilmPoster;
 import ru.netology.repository.FilmRepository;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
 
-class FilmManagerTest {
-    FilmRepository filmRepository = new FilmRepository();
-    FilmManager manager = new FilmManager(filmRepository);
+@ExtendWith(MockitoExtension.class)
+class FilmManagerTestWithMockito {
+    @Mock
+    FilmRepository repository;
+    @InjectMocks
+    FilmManager manager;
 
     private final FilmPoster first = new FilmPoster(1, "Url 1", "Onward", "Cartoon");
     private final FilmPoster second = new FilmPoster(2, "Url 2", "John Wick 3", "Action");
@@ -23,46 +32,26 @@ class FilmManagerTest {
     private final FilmPoster eleventh = new FilmPoster(11, "Url 11", "Фильм без названия", "Пустой жанр");
 
     @Test
-    public void shouldGetAddedFilmsOverLimit() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-        manager.add(eleventh);
+    public void shouldFindAll() {
+        FilmPoster[] returned = new FilmPoster[]{first, second, tenth};
+        doReturn(returned).when(repository).findAll();
+
         FilmPoster[] actual = manager.getAll();
-        FilmPoster[] expected = new FilmPoster[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
+        FilmPoster[] expected = new FilmPoster[]{tenth, second, first};
         assertArrayEquals(actual, expected);
+
+        verify(repository).findAll();
     }
 
     @Test
-    public void shouldRemoveById() {
-        manager.add(fifth);
-        manager.add(fourth);
-        manager.add(ninth);
-        manager.add(eighth);
-        manager.removeById(8);
-        FilmPoster[] actual = manager.getAll();
-        FilmPoster[] expected = new FilmPoster[]{ninth, fourth, fifth};
-        assertArrayEquals(actual, expected);
-    }
+    public void shouldRemoveAll() {
+        FilmPoster[] returned = new FilmPoster[0];
+        doReturn(returned).when(repository).removeAll();
 
-    @Test
-    public void shouldChangeShowLimit(){
-        FilmManager filmManager = new FilmManager( 2);
-
-        filmManager.add(first);
-        filmManager.add(second);
-        filmManager.add(ninth);
-
-        FilmPoster[] actual = filmManager.getAll();
-        FilmPoster[] expected = new FilmPoster[]{ninth, second};
+        FilmPoster[] actual = manager.removeAll();
+        FilmPoster[] expected = new FilmPoster[0];
         assertArrayEquals(actual, expected);
 
+        verify(repository).removeAll();
     }
 }

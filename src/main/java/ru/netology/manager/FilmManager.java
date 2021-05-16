@@ -1,31 +1,49 @@
 package ru.netology.manager;
 
 import lombok.NoArgsConstructor;
-import ru.netology.domain.PosterFilms;
+import ru.netology.domain.FilmPoster;
+import ru.netology.repository.FilmRepository;
 
 @NoArgsConstructor
 public class FilmManager {
-  private PosterFilms[] films = new PosterFilms[0];
+    private FilmRepository repository = new FilmRepository();
+    private int maxShowFilms = 10;
 
-  public void add(PosterFilms item) {
-    int length = films.length + 1;
-    PosterFilms[] tmp = new PosterFilms[length];
-    System.arraycopy(films, 0, tmp, 0, films.length);
-    int lastIndex = tmp.length - 1;
-    tmp[lastIndex] = item;
-    films = tmp;
-  }
+    public FilmManager(int maxShowFilms) {
+        this.maxShowFilms = maxShowFilms;
+    }
 
-  public PosterFilms[] getAddedFilms() {
-    int maxShowFilms = 10;
-    PosterFilms[] result = new PosterFilms[films.length];
-    if (films.length > maxShowFilms) {
-      result = new PosterFilms[maxShowFilms];
+    public FilmManager(FilmRepository repository) {
+        this.repository = repository;
     }
-    for (int i = 0; i < result.length; i++) {
-      int index = films.length - i - 1;
-      result[i] = films[index];
+
+    public void add(FilmPoster films) {
+        repository.save(films);
     }
-    return result;
-  }
+
+    public FilmPoster[] getAll() {
+        FilmPoster[] films = repository.findAll();
+        FilmPoster[] result;
+
+        if (films.length < maxShowFilms) {
+            result = new FilmPoster[films.length];
+        } else {
+            result = new FilmPoster[maxShowFilms];
+        }
+
+        for (int i = 0; i < result.length; i++) {
+            int index = films.length - i - 1;
+            result[i] = films[index];
+        }
+
+        return result;
+    }
+
+    public void removeById(int id) {
+        repository.removeById(id);
+    }
+
+    public FilmPoster[] removeAll() {
+        return repository.removeAll();
+    }
 }

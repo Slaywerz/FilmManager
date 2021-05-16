@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class PosterFilms {
-  private int id;
-  private String imageUrl;
-  private String filmName;
-  private String genre;
+public class FilmPoster {
+    private int id;
+    private String imageUrl;
+    private String filmName;
+    private String genre;
 }
